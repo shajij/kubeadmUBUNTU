@@ -25,3 +25,8 @@ curl https://docs.projectcalico.org/v3.11/manifests/calico.yaml -O
 POD_CIDR="192.168.0.0/16" \
 sed -i -e "s?192.168.0.0/16?$POD_CIDR?g" calico.yaml
 kubectl apply -f calico.yaml
+
+#for cluster auto start after reboot
+git clone https://github.com/xetys/k8s-self-hosted-recovery
+cd k8s-self-hosted-recovery
+./install.sh
