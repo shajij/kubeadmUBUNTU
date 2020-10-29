@@ -21,10 +21,15 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 #kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
 #kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 
-curl https://docs.projectcalico.org/v3.11/manifests/calico.yaml -O
-POD_CIDR="192.168.0.0/16" \
-sed -i -e "s?192.168.0.0/16?$POD_CIDR?g" calico.yaml
-kubectl apply -f calico.yaml
+#curl https://docs.projectcalico.org/v3.11/manifests/calico.yaml -O
+#POD_CIDR="192.168.0.0/16" \
+#sed -i -e "s?192.168.0.0/16?$POD_CIDR?g" calico.yaml
+#kubectl apply -f calico.yaml
+
+#Ref https://docs.projectcalico.org/getting-started/kubernetes/quickstart
+
+kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
 
 #for cluster auto start after reboot
 git clone https://github.com/xetys/k8s-self-hosted-recovery
